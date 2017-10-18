@@ -17,6 +17,9 @@ public class AnnotationConfigPlugin implements IPlugin {
 	@Override
 	public boolean start() {
 		String scanPackage = HettyConfig.getInstance().getScanPackage();
+		if (null == scanPackage) {
+			return false;
+		}
 		List<Class<?>> clazz = ClassUtil.getClasses(scanPackage);
 		int i = 0;
 		for (Class<?> cla : clazz) {

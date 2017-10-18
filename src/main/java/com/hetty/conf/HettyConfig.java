@@ -212,7 +212,8 @@ public class HettyConfig {
 	 * @return
 	 */
 	public String getScanPackage() {
-		return properties.getProperty("server.hessian.scanPackage").trim();
+		String spk = properties.getProperty("server.hessian.scanPackage");
+		return (null == spk )? null : spk.trim();
 	}
 	/**
 	 * get the core number of threads
