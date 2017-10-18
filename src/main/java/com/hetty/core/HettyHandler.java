@@ -359,7 +359,7 @@ public class HettyHandler extends ChannelInboundHandlerAdapter {
 		if (!readingChunks) {
 			ByteArrayOutputStream os = new ByteArrayOutputStream();
 			String uri = request.uri();
-			if (!uri.startsWith("/apis/")) {
+			if (!uri.startsWith("/hessian/")) {
 				sendResourceNotFound(ctx);
 				return;
 			}

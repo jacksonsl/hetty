@@ -8,7 +8,7 @@ public class Test {
 
 	public static void main(String[] args) throws MalformedURLException {
 
-		String url = "http://127.0.0.1:9003/apis/hello/";
+		String url = "http://127.0.0.1:9003/hessian/hello/";
 		HessianProxyFactory factory = new HessianProxyFactory();
 		factory.setUser("client1");
 
