@@ -3,6 +3,7 @@ package com.hetty.plugin;
 import java.io.File;
 import java.util.List;
 
+import com.hetty.conf.ConfigParser;
 import com.hetty.conf.HettyConfig;
 import com.hetty.conf.XmlConfigParser;
 import com.hetty.core.HettySecurity;
@@ -25,7 +26,7 @@ public class XmlConfigPlugin implements IPlugin{
 			if (!f.exists()) {
 				continue;
 			}
-			XmlConfigParser configParser = new XmlConfigParser(filePath);
+			ConfigParser configParser = new XmlConfigParser(filePath);
 			
 			List<Application> appList = configParser.parseApplication();
 			for(Application app:appList){
