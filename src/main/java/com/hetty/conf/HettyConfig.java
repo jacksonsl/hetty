@@ -208,6 +208,13 @@ public class HettyConfig {
 		return properties.getProperty("ssl.certificate.password").trim();
 	}
 	/**
+	 * get the hessian scan package
+	 * @return
+	 */
+	public String getScanPackage() {
+		return properties.getProperty("server.hessian.scanPackage").trim();
+	}
+	/**
 	 * get the core number of threads
 	 * @return
 	 */
@@ -252,9 +259,12 @@ public class HettyConfig {
 				}
 			}
 			if (list.size() == 0) {
-				Class<?> defaultClazz = classLoader
+				Class<?> xmlConfigPlugin = classLoader
 						.loadClass("com.hetty.plugin.XmlConfigPlugin");
-				list.add(defaultClazz);
+				Class<?> annotationConfigPlugin = classLoader
+						.loadClass("com.hetty.plugin.AnnotationConfigPlugin");
+				list.add(xmlConfigPlugin);
+				list.add(annotationConfigPlugin);
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();

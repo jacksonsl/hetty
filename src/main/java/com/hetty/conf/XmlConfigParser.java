@@ -3,7 +3,6 @@ package com.hetty.conf;
 import io.netty.util.internal.StringUtil;
 
 import java.io.BufferedInputStream;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -192,10 +191,11 @@ public class XmlConfigParser implements ConfigParser {
 				document = reader.read(is);
 			}
 		} catch (Exception e) {
-			LOGGER.error(e.getMessage(),e);
-			throw new RuntimeException("get xml Document failed.");
+			LOGGER.debug(e.getMessage(),e);
 		} finally {
-			is.close();
+			if (null != is) {
+				is.close();
+			}
 		}
 		return document;
 	}
@@ -204,9 +204,7 @@ public class XmlConfigParser implements ConfigParser {
 		return getFileStream(configFile);
 	}
 
-	private InputStream getFileStream(String file) {
-		String filePath = System.getProperty("user.dir") + File.separator
-				+ "config" + File.separator + file;
+	private InputStream getFileStream(String filePath) {
 		InputStream in = null;
 		try {
 			in = new BufferedInputStream(new FileInputStream(filePath));

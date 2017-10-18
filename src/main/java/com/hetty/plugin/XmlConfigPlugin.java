@@ -1,5 +1,6 @@
 package com.hetty.plugin;
 
+import java.io.File;
 import java.util.List;
 
 import com.hetty.conf.HettyConfig;
@@ -17,8 +18,14 @@ public class XmlConfigPlugin implements IPlugin{
 		String configFile = HettyConfig.getInstance().getpropertiesFile();
 		String[] fileArr = configFile.split(",");
 		
-		for(String file:fileArr){
-			XmlConfigParser configParser = new XmlConfigParser(file);
+		for(String file : fileArr){
+			String filePath = System.getProperty("user.dir") + File.separator
+					+ "config" + File.separator + file;
+			File f = new File(filePath);
+			if (!f.exists()) {
+				continue;
+			}
+			XmlConfigParser configParser = new XmlConfigParser(filePath);
 			
 			List<Application> appList = configParser.parseApplication();
 			for(Application app:appList){
@@ -30,7 +37,7 @@ public class XmlConfigPlugin implements IPlugin{
 				ServiceHandler.addToServiceMap(service);
 			}
 			
-			List<ServiceVersion>  versionList = configParser.parseSecurity();
+			List<ServiceVersion> versionList = configParser.parseSecurity();
 			if(versionList != null){
 				for(ServiceVersion version:versionList){
 					ServiceHandler.addToVersionMap(version);
