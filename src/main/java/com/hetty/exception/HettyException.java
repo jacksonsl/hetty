@@ -48,7 +48,7 @@ public class HettyException extends RuntimeException {
 	public static void raise(String code) {
 		String message = getMessageProperties().getProperty(code);
 		if (null == message || "".equals(message)) {
-			message = "[短信网关] 未知异常编码：" + code;
+			message = "未知异常编码：" + code;
 		}
 		HettyException exception = new HettyException(code, message);
 		throw exception;
