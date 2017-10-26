@@ -82,11 +82,11 @@ public class ServiceHandler {
 			String user = request.getUser();
 			String password = request.getPassword();
 
-			boolean isRight = HettySecurity.checkPermission(user, password);
+			/*boolean isRight = HettySecurity.checkPermission(user, password);
 			if (!isRight) {
 				throw new RuntimeException(
 						"the user or password is wrong,please check your user and password.");
-			}
+			}*/
 			StringBuffer serviceKey = new StringBuffer(user).append("#")
 					.append(serviceName);
 			String version = versionMap.get(serviceKey.toString());

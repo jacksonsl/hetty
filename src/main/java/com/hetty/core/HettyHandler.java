@@ -166,11 +166,11 @@ public class HettyHandler extends ChannelInboundHandlerAdapter {
 		InputStream is = new ByteArrayInputStream(contentBytes);
 
 		SerializerFactory serializerFactory = getSerializerFactory();
-		String username = null;
-		String password = null;
+		String username = "";
+		String password = "";
 		String[] authLink = getUsernameAndPassword(request);
-		username = authLink[0].equals("")?null:authLink[0];
-		password = authLink[1].equals("")?null:authLink[1];
+		username = authLink[0].equals("")?"":authLink[0];
+		password = authLink[1].equals("")?"":authLink[1];
 		String clientIP = request.headers().get("Client-IP");
 		RequestWrapper rw = new RequestWrapper(username, password, clientIP, serviceName);
 		
@@ -228,14 +228,14 @@ public class HettyHandler extends ChannelInboundHandlerAdapter {
 				out.setSerializerFactory(serializerFactory);
 			}
 
-			if (username == null || password == null) {
+			/*if (username == null || password == null) {
 				Exception exception = new RuntimeException(
 						"the client can't offer the user or password infor,please check.");
 				out.writeFault("ServiceException", exception.getMessage(),
 						exception);
 				LOGGER.error("the client can't offer the user or password infor,now we have refused.");
 				throw exception;
-			}
+			}*/
 			invoke(rw, in, out);
 		} catch (Exception e) {
 			e.printStackTrace();

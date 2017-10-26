@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.Set;
 
 /**
  * 读取属性配置文件
@@ -54,6 +55,10 @@ public class PropertiesUtil {
 	 */
 	public String getProperty(String key) {
 		return proper.getProperty(key);
+	}
+	
+	public Set<Object> keySet() {
+		return proper.keySet();
 	}
 
 }
