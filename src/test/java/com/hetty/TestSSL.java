@@ -13,9 +13,10 @@ public class TestSSL {
 
 	public static void main(String[] args) throws MalformedURLException {
 
-		String url = "https://localhost:9000/hessian/hello/";
+		String url = "https://localhost:9003/hessian/hello/";
 		HostnameVerifier hv = new HostnameVerifier() {  
-            public boolean verify(String urlHostName, SSLSession session) { 
+            @Override
+			public boolean verify(String urlHostName, SSLSession session) { 
             	System.out.println(urlHostName);
             	System.out.println(session.getPeerHost());
              return urlHostName.equals(session.getPeerHost());  

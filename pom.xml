@@ -4,7 +4,7 @@
 
 	<groupId>com.hetty</groupId>
 	<artifactId>hetty</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.1</version>
 	<packaging>jar</packaging>
 
 	<name>hetty</name>
